@@ -16,6 +16,7 @@
       <base href="https://web--jpuxp.run.goorm.site/">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <script type="text/javascript" src="js/search.js" defer></script>
+	   <script type="text/javascript" src="js/basic_test.js" defer></script>
    </head>
    <body>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -76,8 +77,9 @@
 	   <form action="https://www.google.co.kr/search" method="GET" target="_blank">
             <div class="d-flex justify-content-center">
                 <mx-auto>
-                    <input name="query" type="text" class="form-control-lg" placeholder="검색어 입력" aria-label="search" aria-describedby="search_btn">
-                </mx-auto>
+                    <input name="query" type="text" class="form-control-lg" 
+						   placeholder="검색어 입력" aria-label="search" aria-describedby="search_btn" id="search_txt">
+				</mx-auto>
                 <button class="btn btn-success" type="submit" id="search_btn">검색</button>
            </div>
         </form>
@@ -88,8 +90,10 @@
          <!테이블을 정의합니다.>
          <div class="w-auto p-3" style="background-color: #;">
           <table class="table table-dark table-hover">
-         <caption align="top">인기 검색어</caption> <!테이블 제목>
-         <tbody class="table-group-divider">
+         
+			  <caption align="top">현재 검색어: <p id="search_message">
+				  </p></caption> <!테이블 제목>
+        <tbody class="table-group-divider">
             <tr bg color="yellow"><td class="table-primary" width="50"><b>영화</b>
                     </td>
                     <td width="80" bgcolor="blue">아저씨</td>
