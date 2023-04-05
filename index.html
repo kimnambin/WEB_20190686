@@ -8,15 +8,14 @@
       <meta name="author"content="학번">
        <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Bootstrap demo </title>
+      <title>Bootstrap demo</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
            crossorigin="anonymous">
       <meta name="keywords"content="computer">
-      <base href="https://web--kyjff.run.goorm.site/">
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-	   <script type="text/javascript" src="js/search.js" defer></script>
-
+      <base href="https://web--jpuxp.run.goorm.site/">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <script type="text/javascript" src="js/search.js" defer></script>
    </head>
    <body>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -25,8 +24,9 @@
       <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">전체 메뉴</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+         aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -38,47 +38,81 @@
           <a class="nav-link" href="#">검색</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://www.youtube.com/ target='_blank'
-">YOUTUBE</a>
+          <a class="nav-link" href="https://www.youtube.com/"target='_blank'>YOUTUBE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://map.kakao.com/"target='_blank'>지도</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://mail3.nate.com/"target='_blank'>메일</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://play.google.com/"target='_blank'>앱 스토어</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="https://map.kakao.com/target='_blank'
-" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            지도
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+          aria-expanded="false">
+            기타 웹사이트
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="https://mail3.nate.com/target='_blank'
-">메일</a></li>
-            <li><a class="dropdown-item" href="https://play.google.com/googleplaygames?pcampaignid=merch-FHR-gpg-gamelaunch-lords-mobile"/target='_blank'>앱스토어</a></li>
-            <li><a class="dropdown-item" href="https://play.google.com/target='_blank'
-">기타 웹사이트</a></li>
+            <li><a class="dropdown-item" href="https://www.naver.com/"target='_blank'>네이버</a></li>
+            <li><a class="dropdown-item" href="https://www.daum.net/"target='_blank'>다음</a></li>
+            <li><a class="dropdown-item" href="https://www.nate.com/"target='_blank'>네이트</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-      <p style="text-align:left;"><font size="5em" color="blue">문서제목,자바스크립트 코드,CSS
+     
+	   <p style="text-align:left;"><font size="5em" color="blue">문서제목,자바스크립트 코드,CSS
       스타일 정의, 메타데이터정의</font>
       <br><!br은 줄바꿈 입니다.>
-     <div class="mx-auto" style="width: 700px;">
-
-		  <a href="index.html"target="_blank">
-			  <img src="img/googlelogo_color_272x92dp.png" class = "img-fluid" alt="구글이미지"></a>
-	   </div>
+      <div class="mx-auto" style="width:500px;"><a href="index.html"target="_blank">
+         <img src= "img/google.png""class="img-fluid alt="구글이미지"></a></div>
       <! img 태그는 이미지를 삽입합니다. scr=경로, 이미지 깨지면  alt 출력>
       <br><br>
-      <p style="text-align:center">검색:
-		  <input type="text" name="search" size="55" value=""><button id="search_btn" type="button">검색</button>
-
- <br></p>
-      <br><br><br><br><br><br><br>
-      <hr>
+     
+	   <form action="https://www.google.co.kr/search" method="GET" target="_blank">
+            <div class="d-flex justify-content-center">
+                <mx-auto>
+                    <input name="query" type="text" class="form-control-lg" placeholder="검색어 입력" aria-label="search" aria-describedby="search_btn">
+                </mx-auto>
+                <button class="btn btn-success" type="submit" id="search_btn">검색</button>
+           </div>
+        </form>
+      <!--<p style="text-align:center">검색:<input type="text" name="search"size="55"value="">
+         <button id="search_btn" type="button">검색</button>-->
+      <br><br><br><br>
       <table style="margin-left: auto; margin-right: auto;" border="1" width="500">
          <!테이블을 정의합니다.>
+         <div class="w-auto p-3" style="background-color: #;">
+          <table class="table table-dark table-hover">
          <caption align="top">인기 검색어</caption> <!테이블 제목>
-         <tbody>
-            <tr><td bgcolor="green" width="50"><b>영화</b></td><td width="80" bqcolor="blue">아저씨</td>
+         <tbody class="table-group-divider">
+            <tr bg color="yellow"><td class="table-primary" width="50"><b>영화</b>
+                    </td>
+                    <td width="80" bgcolor="blue">아저씨</td>
+                    <td width="80" bgcolor="blue">아저씨</td>
+                    <td width="100">어머니</td>
+                    <td width="100">헬머니</td>
+                    <td>할부지</td>
+                </tr>
+            <tr bgcolor="red">
+                    <td class="table-secondary" width="50"><b>음악</b></td>
+                    <td>KPOP</td>
+                    <td>JPOP</td>
+                    <td>ROCK1</td>
+                    <td>ROCK2</td>
+                    <td>EUROBEAT</td>
+                </tr>
+                   <tr bgcolor="blue">
+                    <td class="table-success" width="50"><b>게임</b></td>
+                    <td>LOL</td>
+                    <td>WOW</td>
+                    <td>DIABLO</td>
+                    <td colspan="2">SUDDEN ATTACK 2</td>
+                    <!--<td bgcolor="green" width="50"><b>영화</b></td><td width="80" bgcolor="blue">아저씨</td>
                <td width="80" bgcolor="blue">아저씨</td>
                <td>어머니</td><td width="50">할머니</td><td>할아버지</td></tr><! 1행추가>
             <tr bgcolor="red"><td width="50">음악</td>
@@ -88,13 +122,16 @@
             <tr><td colspan = "6" width="100">외부 사이트 링크</td></tr>
             <tr><td colspan="2"><a href="https://www.naver.com/">네이버</a></td>
                <td colspan="2" bgcolor="yellow"><a href="https://www.daum.net/">다음</a></td>
-            <td colspan="2" bgcolor="purple"><a href="https://www.nate.com/">네이트</a></td></tr>
-      </table>
-      <p style="text-align:right;"><font size="3em" color="red">
+            <td colspan="2" bgcolor="purple"><a href="https://www.nate.com/">네이트</a></td></tr>-->
+            
+            </tr></table></div></table>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <hr>
+    
+	   <p style="text-align:right;"><font size="3em" color="red">
          문서의 본문 텍스트,이미지,테이블,자바스크립트코드,동영상 등</font></p>
-      <br>
-	    
-<footer class="bg-light text-center text-lg-start">
+      <br><br><br><br><br>
+      <footer class="bg-light text-center text-lg-start">
   <div class="text-center p-3" style="background-color:#D8D8D8;">
     <h3 class="text-secondary">FOOTER TEST</h3>
     © 2020 Copyright: <a class="text-dark" href="https://꾸글.com/">꾸글.com</a>
