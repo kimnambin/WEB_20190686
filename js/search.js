@@ -7,4 +7,3 @@ function search_message(){
    console.log(search_str.value); // 콘솔에 출력
 }
 
-
