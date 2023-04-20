@@ -1,12 +1,21 @@
 document.getElementById("search_btn").addEventListener('click', search_message);
 
-var search_array = [];//빈 배열 - 전역 변수
+var search_array = [];
 
 function search_message(){
-   alert("검색을 수행합니다!"); 
-	search_array.push(search_str.value); // 배열에 검색어 추가
-	   let search_str = document.querySelector("#search_txt"); // 변수에 저장
-   document.getElementById("search_message").innerHTML = search_array.toString(); // 값 변환
-   console.log(search_str.value); // 콘솔에 출력
+  let search_str = document.querySelector("#search_txt");
+  
+  if (search_str.value.length === 0) {
+    alert("검색어가 비었습니다. 입력해주세요");
+    return;
+  }
+  
+  if (search_array.length >= 10) {
+    search_array.shift(); // 맨 앞 요소 삭제
+  }
+  
+  search_array.push(search_str.value);
+  
+  document.getElementById("search_message").innerHTML = search_array.toString();
+  console.log(search_str.value);
 }
-

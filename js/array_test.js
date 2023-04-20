@@ -10,4 +10,4 @@ cars[1] = Date.now(); //값에 객체 삽입 가능
 
 console.log(cars); //배열출력 
 console.log(typeof cars); //배열 타입 : 객체
-document.getElementById(“search_message”).innerHTML = cars; // 이름 참조
+document.getElementById("search_message").innerHTML = cars; // 이름 참조
