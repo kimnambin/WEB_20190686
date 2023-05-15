@@ -54,9 +54,18 @@ function getCookie(name) {
 }
 
 function closePopup() {
+    var checkbox = document.getElementById('check_popup');
+    if (checkbox && checkbox.checked) {
+        setCookie("popupYN", "N", 1);
+        console.log("쿠키를 설정합니다.");
+        self.close();
+    }
+}
+
+/* function closePopup() {
         if (document.getElementById('check_popup').value) {
             setCookie("popupYN", "N", 1);
             console.log("쿠키를 설정합니다.");
             self.close();
         }
-    }
+    } */
