@@ -1,4 +1,4 @@
-function login(){
+function login() {
     let form = document.querySelector("#form_main");
     let id = document.querySelector("#floatingInput");
     let password = document.querySelector("#floatingPassword");
@@ -6,7 +6,7 @@ function login(){
 
     form.action = "../index_login.html";
     form.method = "get";
-    
+
     if (check.checked == true) {
         alert("쿠키를 저장합니다.");
         setCookie("id", id.value, 1);
@@ -18,20 +18,34 @@ function login(){
     if (id.value.length === 0 || password.value.length === 0) {
         alert("아이디와 비밀번호를 모두 입력해주세요.");
     } else {
-		login_count(); // 카운트 증가
+        let loginFailCount = getCookie("login_fail_cnt") || 0;
+        
+        if (loginFailCount >= 3) {
+            alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
+            return;
+        }
+
+        login_count(); // 카운트 증가
         session_set(); // 세션 생성
-		form.submit();
+        
+        setTimeout(function() {
+            logout(); // 5분 후 자동 로그아웃
+        }, 5 * 60 * 1000); // 5분을 밀리초로 변환
+
+        form.submit();
     }
 }
 
-function logout(){
-	session_del(); // 세션 삭제
-    location.href='../index.html';
+
+function logout() {
+    session_del(); // 세션 삭제
+    deleteCookie("id"); // 쿠키 삭제
+    location.href = '../index.html';
 
     // Increment logout count and update cookie
     logout_count();
-	//window.location.href = "https://web--jpuxp.run.goorm.site/";
 }
+
 
 function get_id() {
     if (true) {
@@ -200,6 +214,20 @@ function decrypt_text(){
     const b = this.decodeByAES256(rk, eb);
     console.log(b); 
 }
+
+function handleLoginFailure() {
+    let loginFailCount = getCookie("login_fail_cnt") || 0;
+    loginFailCount++;
+
+    setCookie("login_fail_cnt", loginFailCount, 365); // 실패 횟수를 쿠키에 저장
+
+    if (loginFailCount >= 3) {
+        alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
+        // 로그인 제한 처리를 위한 추가 작업 수행
+        return;
+    }
+}
+
 
 
 
