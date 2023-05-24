@@ -9,10 +9,9 @@ function session_set(){ //세션 저장(객체)
     }
     
     if (sessionStorage) {
-        const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
-        let en_text = encrypt_text(objString); // 암호화
-        sessionStorage.setItem("Session_Storage_object", objString);
-        sessionStorage.setItem("Session_Storage_encrypted", en_text);
+        let en_text = encrypt_text(password.value);
+        sessionStorage.setItem("Session_Storage_test", en_text);
+        
     } else {
         alert("세션 스토리지 지원 x");
     }   
@@ -72,3 +71,17 @@ function session_get() { //세션 읽기
         alert("세션 스토리지 지원 x");
     }
 }
+
+// 12주차 응용 문제
+ 
+function session_join_get() {
+  // 세션 객체 가져오기
+  var sessionObj = sessionStorage.getItem("join");
+
+  // 콘솔에 객체 내용 출력
+  console.log(JSON.parse(sessionObj));
+}
+
+window.onload = session_join_get;
+
+
