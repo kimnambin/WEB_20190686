@@ -1,3 +1,27 @@
+function addJavascript(jsname) { // 자바스크립트 외부 연동
+	var th = document.getElementsByTagName('head')[0];
+	var s = document.createElement('script');
+	s.setAttribute('type','text/javascript');
+	s.setAttribute('src',jsname);
+	th.appendChild(s);
+}
+addJavascript('/js/security.js'); // 암복호화 함수
+addJavascript('/js/session.js'); // 세션 함수
+addJavascript('/js/cookie.js'); // 쿠키 함수
+
+function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
+    let id = document.querySelector("#floatingInput");
+    let check = document.querySelector("#idSaveCheck");
+    let get_id = getCookie("id");
+    
+    if(get_id) { 
+    id.value = get_id; 
+    check.checked = true; 
+    }
+    session_check(); // 세션 유무 검사
+}
+
+
 function login() {
     let form = document.querySelector("#form_main");
     let id = document.querySelector("#floatingInput");
@@ -69,50 +93,17 @@ function get_id() {
 }
 
 
-function deleteCookie(cookieName){
+/*function deleteCookie(cookieName){
     var expireDate = new Date();
     expireDate.setDate(expireDate.getDate() - 1);
     document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-}
+}*/
 
 // 로그인 횟수를 증가시키고 쿠키를 업데이트하는 함수
-function login_count() {
-    var count = getCookie("login_cnt");
-    if (count) {
-        count = parseInt(count) + 1;
-    } else {
-        count = 1;
-    }
-    setCookie("login_cnt", count, 365); // 1년 동안 유지되는 쿠키 설정
-}
 
-// 로그아웃 횟수를 증가시키고 쿠키를 업데이트하는 함수
-function logout_count() {
-    var count = getCookie("logout_cnt");
-    if (count) {
-        count = parseInt(count) + 1;
-    } else {
-        count = 1;
-    }
-    setCookie("logout_cnt", count, 365); // 1년 동안 유지되는 쿠키 설정
-}
-
-
-
-function init(){
-    let id = document.querySelector("#floatingInput");
-    let check = document.querySelector("#idSaveCheck");
-    let get_id = getCookie("id");
-    
-    if(get_id) { 
-        id.value = get_id; 
-        check.checked = true; 
-    }
-	    session_check(); // 세션 유무 검사
-}
 
 // Helper function to set a cookie
-function setCookie(name, value, days) {
+/*function setCookie(name, value, days) {
     var expires = "";
     if (days) {
         var date = new Date();
@@ -123,7 +114,7 @@ function setCookie(name, value, days) {
 }
 
 // Helper function to get a cookie value by name
-function getCookie(name) {
+/*function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
@@ -136,10 +127,10 @@ function getCookie(name) {
         }
     }
     return null;
-}
+}*/
 
 
-function session_set() { //세션 저장
+/*function session_set() { //세션 저장
     let id = document.querySelector("#floatingInput");
 	let password = document.querySelector("#floatingPassword");
         if (sessionStorage) {
@@ -178,9 +169,9 @@ function session_del() {//세션 삭제
     } else {
         alert("세션 스토리지 지원 x");
     }
-}
+}*/
 
-function encodeByAES256(key, data){
+/*function encodeByAES256(key, data){
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
         iv: CryptoJS.enc.Utf8.parse(""),
         padding: CryptoJS.pad.Pkcs7,
@@ -213,7 +204,9 @@ function decrypt_text(){
     const eb = session_get();
     const b = this.decodeByAES256(rk, eb);
     console.log(b); 
-}
+}*/
+
+
 
 function handleLoginFailure() {
     let loginFailCount = getCookie("login_fail_cnt") || 0;
@@ -227,6 +220,9 @@ function handleLoginFailure() {
         return;
     }
 }
+
+
+
 
 
 
