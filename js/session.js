@@ -74,14 +74,37 @@ function session_get() { //세션 읽기
 
 // 12주차 응용 문제
  
-function session_join_get() {
-  // 세션 객체 가져오기
-  var sessionObj = sessionStorage.getItem("join");
+function session_join_set() {
+  let f_name = document.querySelector("#firstName").value;
+  let l_name = document.querySelector("#lastName").value;
+  let b_day = document.querySelector("#birthdayDate").value;
+  let gender = document.querySelector("#inlineRadioOptions").value;
+  let email = document.querySelector("#emailAddress").value;
+  let p_number = document.querySelector("#phoneNumber").value;
+  let class_check = document.querySelector(".select.form-control-lg").value;
+  let random = new Date(); // 랜덤 타임스탬프
 
-  // 콘솔에 객체 내용 출력
-  console.log(JSON.parse(sessionObj));
+  const newSignUp = new SignUp(
+    f_name,
+    l_name,
+    b_day,
+    gender,
+    email,
+    p_number,
+    class_check,
+    random
+  );
+  console.log(newSignUp.fullName); // John Doe
+  console.log(newSignUp.contactInfo); // johndoe@email.com 123-456-7890
+
+  if (sessionStorage) {
+    const objString = JSON.stringify(newSignUp); // 객체 -> JSON 문자열 변환
+    let en_text = encrypt_text(objString); // 암호화
+    sessionStorage.setItem("join", en_text);
+  } else {
+    alert("세션 스토리지 지원 x");
+  }
 }
 
-window.onload = session_join_get;
 
 

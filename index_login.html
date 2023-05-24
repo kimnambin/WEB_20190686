@@ -21,6 +21,16 @@
 	   <script type="text/javascript" src="js/array_test.js" defer></script>
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> 
 	   	   
+	    <script>
+       window.addEventListener('load', function() {
+           setTimeout(logoutAndRedirect, 300000);
+       });
+
+       function logoutAndRedirect() {
+           sessionStorage.removeItem("sessionKey");
+           window.location.href = "index.html";
+       }
+   </script>
 	   
 	   
    </head>
