@@ -54,7 +54,7 @@ function login() {
         
         setTimeout(function() {
             logout(); // 5분 후 자동 로그아웃
-        }, 5 * 60 * 1000); // 5분을 밀리초로 변환
+        }, 5 * 60 * 1000); 
 
         form.submit();
     }
@@ -66,7 +66,6 @@ function logout() {
     deleteCookie("id"); // 쿠키 삭제
     location.href = '../index.html';
 
-    // Increment logout count and update cookie
     logout_count();
 }
 
@@ -222,8 +221,22 @@ function handleLoginFailure() {
 }
 
 
+function login_check() {
+    let emailRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+    let passwordRegex = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
 
+    if (!emailRegex.test(email)) {
+        alert("올바른 이메일 형식이 아닙니다.");
+        return false; // 로그인이 되지 않도록 함
+    }
 
+    if (!passwordRegex.test(password)) {
+        alert("올바른 패스워드 형식이 아닙니다.");
+        return false; // 로그인이 되지 않도록 함
+    }
 
-
+   login();
+}
