@@ -50,7 +50,8 @@ function join(){ // 회원가입
     if(f_name.value.length === 0 || l_name.value.length === 0 || b_day.value.length === 0 || email.value.length === 0 || p_number.value.length === 0){
         alert("회원가입 폼에 모든 정보를 입력해주세요.(성별, 분반 제외)");
     }else{
-        session_join_set(); // 회원가입 용 세션 생성
+        session_join_set(); 
+		session_join_get(); // 회원가입 용 세션 생성
 		form.submit();
     }
 }

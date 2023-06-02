@@ -42,19 +42,10 @@ function login() {
     if (id.value.length === 0 || password.value.length === 0) {
         alert("아이디와 비밀번호를 모두 입력해주세요.");
     } else {
-        let loginFailCount = getCookie("login_fail_cnt") || 0;
-        
-        if (loginFailCount >= 3) {
-            alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
-            return;
-        }
 
         login_count(); // 카운트 증가
         session_set(); // 세션 생성
         
-        setTimeout(function() {
-            logout(); // 5분 후 자동 로그아웃
-        }, 5 * 60 * 1000); 
 
         form.submit();
     }
@@ -168,9 +159,9 @@ function session_del() {//세션 삭제
     } else {
         alert("세션 스토리지 지원 x");
     }
-}*/
 
-/*function encodeByAES256(key, data){
+
+function encodeByAES256(key, data){
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
         iv: CryptoJS.enc.Utf8.parse(""),
         padding: CryptoJS.pad.Pkcs7,
@@ -206,21 +197,6 @@ function decrypt_text(){
 }*/
 
 
-
-function handleLoginFailure() {
-    let loginFailCount = getCookie("login_fail_cnt") || 0;
-    loginFailCount++;
-
-    setCookie("login_fail_cnt", loginFailCount, 365); // 실패 횟수를 쿠키에 저장
-
-    if (loginFailCount >= 3) {
-        alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
-        // 로그인 제한 처리를 위한 추가 작업 수행
-        return;
-    }
-}
-
-
 function login_check() {
     let emailRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
     let passwordRegex = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
@@ -239,4 +215,19 @@ function login_check() {
     }
 
    login();
+}
+
+
+
+function handleLoginFailure() {
+    let loginFailCount = getCookie("login_fail_cnt") || 0;
+    loginFailCount++;
+
+    setCookie("login_fail_cnt", loginFailCount, 365); // 실패 횟수를 쿠키에 저장
+
+    if (loginFailCount >= 3) {
+        alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
+        // 로그인 제한 처리를 위한 추가 작업 수행
+        return;
+    }
 }

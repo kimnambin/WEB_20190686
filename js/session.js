@@ -11,11 +11,24 @@ function session_set(){ //세션 저장(객체)
     if (sessionStorage) {
         let en_text = encrypt_text(password.value);
         sessionStorage.setItem("Session_Storage_test", en_text);
+		
+		console.log("세션에 비밀번호를 암호화하여 저장했습니다.");
+        console.log("저장된 세션 객체:", obj);
         
     } else {
         alert("세션 스토리지 지원 x");
     }   
 }
+
+function get_id(){
+    if(true){
+        decrypt_text();
+    }
+    else{
+        
+    }
+}
+
 
 function session_join_set(){ //세션 저장(객체)    
     let f_name = document.querySelector("#firstName").value;
@@ -72,6 +85,8 @@ function session_get() { //세션 읽기
     }
 }
 
+
+
 // 12주차 응용 문제
  
 function session_join_set() {
@@ -102,6 +117,7 @@ function session_join_set() {
     let en_text = encrypt_text(objString); // 암호화
     sessionStorage.setItem("join", en_text);
   } else {
+	  session_join_get();
     alert("세션 스토리지 지원 x");
   }
 }
