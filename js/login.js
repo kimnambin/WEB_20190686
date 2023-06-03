@@ -22,7 +22,7 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
 }
 
 
-function login() {
+ function login() {
     let form = document.querySelector("#form_main");
     let id = document.querySelector("#floatingInput");
     let password = document.querySelector("#floatingPassword");
@@ -30,6 +30,26 @@ function login() {
 
     form.action = "../index_login.html";
     form.method = "get";
+
+    function login_check() {
+        let idRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+        let passwordRegex = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+        let id = document.querySelector("#floatingInput").value;
+        let password = document.querySelector("#floatingPassword").value;
+
+        if (!idRegex.test(id)) {
+            alert("올바른 id 형식이 아닙니다.");
+            return false; // 로그인이 되지 않도록 함
+        }
+
+        if (!passwordRegex.test(password)) {
+            alert("올바른 패스워드 형식이 아닙니다.");
+            return false; // 로그인이 되지 않도록 함
+        }
+
+        return true; // 로그인 조건을 모두 통과하면 true 반환
+    }
 
     if (check.checked == true) {
         alert("쿠키를 저장합니다.");
@@ -42,14 +62,32 @@ function login() {
     if (id.value.length === 0 || password.value.length === 0) {
         alert("아이디와 비밀번호를 모두 입력해주세요.");
     } else {
+        let loginFailCount = getCookie("login_fail_cnt") || 0;
 
-        login_count(); // 카운트 증가
-        session_set(); // 세션 생성
-        
+        if (loginFailCount >= 3) {
+            alert("로그인이 제한되었습니다. 3분 후에 다시 시도해주세요.");
+			window.location.href = "../login x .html";
+			form.method = "get";
+            return; // 로그인이 되지 않도록 함
+        }
 
-        form.submit();
+        if (!login_check()) {
+            // login_check() 함수를 호출하여 로그인 조건을 체크
+            loginFailCount++; // 로그인 실패 횟수 증가
+            setCookie("login_fail_cnt", loginFailCount, 0); // 쿠키에 로그인 실패 횟수 저장
+            return; // 로그인이 되지 않도록 함
+        } else {
+            // 로그인 처리 코드
+            // ...
+
+            loginFailCount = 0; // 로그인 성공 시 로그인 실패 횟수 초기화
+            deleteCookie("login_fail_cnt"); // 쿠키 삭제
+			
+			
+        }
     }
 }
+
 
 
 function logout() {
@@ -83,151 +121,5 @@ function get_id() {
 }
 
 
-/*function deleteCookie(cookieName){
-    var expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() - 1);
-    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-}*/
-
-// 로그인 횟수를 증가시키고 쿠키를 업데이트하는 함수
 
 
-// Helper function to set a cookie
-/*function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
-
-// Helper function to get a cookie value by name
-/*function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-                while (c.charAt(0) === ' ') {
-            c = c.substring(1, c.length);
-        }
-        if (c.indexOf(nameEQ) === 0) {
-            return c.substring(nameEQ.length, c.length);
-        }
-    }
-    return null;
-}*/
-
-
-/*function session_set() { //세션 저장
-    let id = document.querySelector("#floatingInput");
-	let password = document.querySelector("#floatingPassword");
-        if (sessionStorage) {
-        let en_text = encrypt_text(password.value);
-        sessionStorage.setItem("Session_Storage_test", en_text);
-
-
-    } else {
-        alert("로컬 스토리지 지원 x");
-    }
-}
-
-
-
-function session_get() { //세션 읽기
-    if (sessionStorage) {
-       return sessionStorage.getItem("Session_Storage_test");
-    } else {
-        alert("세션 스토리지 지원 x");
-    }
-}
-
-function session_check() { //세션 검사
-    if (sessionStorage.getItem("Session_Storage_test")) {
-        alert("이미 로그인 되었습니다.");
-        location.href='index_login.html'; // 로그인된 페이지로 이동
-    }
-}
-
-function session_del() {//세션 삭제
-    // Check if the sessionStorage object exists
-    if (sessionStorage) {
-        // Retrieve data
-        sessionStorage.removeItem("Session_Storage_test");
-        alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
-    } else {
-        alert("세션 스토리지 지원 x");
-    }
-
-
-function encodeByAES256(key, data){
-    const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
-        iv: CryptoJS.enc.Utf8.parse(""),
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return cipher.toString();
-}
-
-function decodeByAES256(key, data){
-    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
-        iv: CryptoJS.enc.Utf8.parse(""),
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return cipher.toString(CryptoJS.enc.Utf8);
-};
-
-function encrypt_text(password){
-    const k = "key"; // 클라이언트 키
-    const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
-    const b = password;
-    const eb = this.encodeByAES256(rk, b);
-    return eb;
-    console.log(eb);
-}
-
-function decrypt_text(){
-    const k = "key"; // 서버의 키
-    const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
-    const eb = session_get();
-    const b = this.decodeByAES256(rk, eb);
-    console.log(b); 
-}*/
-
-
-function login_check() {
-    let emailRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
-    let passwordRegex = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-    let email = document.querySelector("#email").value;
-    let password = document.querySelector("#password").value;
-
-    if (!emailRegex.test(email)) {
-        alert("올바른 이메일 형식이 아닙니다.");
-        return false; // 로그인이 되지 않도록 함
-    }
-
-    if (!passwordRegex.test(password)) {
-        alert("올바른 패스워드 형식이 아닙니다.");
-        return false; // 로그인이 되지 않도록 함
-    }
-
-   login();
-}
-
-
-
-function handleLoginFailure() {
-    let loginFailCount = getCookie("login_fail_cnt") || 0;
-    loginFailCount++;
-
-    setCookie("login_fail_cnt", loginFailCount, 365); // 실패 횟수를 쿠키에 저장
-
-    if (loginFailCount >= 3) {
-        alert("로그인이 제한되었습니다. 관리자에게 문의하세요.");
-        // 로그인 제한 처리를 위한 추가 작업 수행
-        return;
-    }
-}
