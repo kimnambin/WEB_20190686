@@ -145,8 +145,51 @@
             <td colspan="2" bgcolor="purple"><a href="https://www.nate.com/">네이트</a></td></tr>-->
             
             </tr></table></div></table>
+	   자동 로그아웃
+  <style>
+    #demo {
+      font-size: 36px; 
+      color: red; 
+      text-decoration: underline; 
+	    
+	  }
+  </style>
+  <script>
+    var time = 30;
+    var min = "";
+    var sec = "";
+
+    var x = setInterval(function() {
+      min = parseInt(time / 60);
+      sec = time % 60;
+
+      document.getElementById("demo").innerHTML = "<u>" + min + "분 " + sec + "초</u>";
+      time--;
+
+      if (time < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "<span style='color: red'>시간 초과</span>";
+		  setTimeout(function() {
+			   window.location.href = "index.html"; // 5분 후에 login.html로 이동
+        }, 5000);
+      }
+    }, 1000);
+  </script>
+
+
+  <div id="demo">자동 로그아웃</div>
+  <hr>
+
       <br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <hr>
+	   
+
+
+
+	   
+	
+
+
+	   
     
 	   <p style="text-align:right;"><font size="3em" color="red">
          문서의 본문 텍스트,이미지,테이블,자바스크립트코드,동영상 등</font></p>

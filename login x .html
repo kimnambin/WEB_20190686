@@ -20,7 +20,35 @@
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> 
 		<script type="text/javascript" src="js/session.js" defer></script>
 	   
-   </head>
+    <style>
+    #demo {
+      font-size: 36px;
+      color: red;
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    var time = 180;
+    var min = "";
+    var sec = "";
+
+    var x = setInterval(function () {
+      min = parseInt(time / 60);
+      sec = time % 60;
+
+      document.getElementById("demo").innerHTML = "<u>" + min + "분 " + sec + "초</u>";
+      time--;
+
+      if (time < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "<span style='color: red'>시간 초과</span>";
+        setTimeout(function () {
+          window.location.href = "index.html"; // 3분 후에 index.html로 이동
+        }, 5000);
+      }
+    }, 1000);
+  </script>
+</head>
    
 	<body class="text-center" onload="init();">
 
@@ -35,6 +63,9 @@
 		
 		<form id="form_main">
         <h1 class="h3 mb-3 fw-normal">3분간 로그인 불가</h1>
+			<div id="demo"></div>
+			
+			
         <div class="form-floating">
           <input type="email" class="form-control" id="floatingInput" name="id" placeholder="name@example.com">
           <label for="floatingInput">이메일 주소 입력</label>
