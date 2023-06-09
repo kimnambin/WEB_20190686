@@ -55,9 +55,23 @@ function session_join_set() {
   }
 }
 
+// 12주차 응용문제
+
 function session_join_get() {
-  // 여기에 index_join.html 객체 내용을 구현하는 코드 작성
+
+  var session = getSession(); 
+  // 세션을 객체로 변환
+  var sessionObject = JSON.parse(session);
+  
+  // 객체 내용을 콘솔에 출력
+  console.log(sessionObject);
 }
+
+function getSession() {
+  
+  return '{"userId": "12345", "username": "John Doe"}';
+}
+
 
 function session_check() { //세션 검사
   if (sessionStorage.getItem("Session_Storage_test")) {
