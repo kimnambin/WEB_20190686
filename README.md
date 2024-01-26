@@ -17,6 +17,8 @@
     <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
     <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+   <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white">
+
 </div>
 
 
@@ -24,7 +26,8 @@
 1명
 
 ## 📌 구현 내용
--로그인 / 회원가입페이지
--검색 기능 + 필터링
--프로필 페이지 -> 브금 , 지도 , 주소
+- 로그인 / 회원가입페이지
+- 검색 기능 + 필터링
+- 프로필 페이지 -> 브금 , 지도 , 주소
+
 
